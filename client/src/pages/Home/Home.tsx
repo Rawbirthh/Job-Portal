@@ -3,7 +3,7 @@ import UserForm from '../../features/users/UserForm';
 import UserList from '../../features/users/UserList';
 
 export default function Home() {
-  const { users, loading, error, addUser } = useUsers();
+  const { users, loading, error, addUser, updateUser, deleteUser } = useUsers();
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center py-10">
@@ -24,7 +24,7 @@ export default function Home() {
           Users List
         </h2>
 
-        <UserList users={users} loading={loading} />
+        <UserList users={users} loading={loading} onUpdate={updateUser} onDelete={deleteUser} />
       </div>
     </div>
   );

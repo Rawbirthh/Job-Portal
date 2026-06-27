@@ -5,8 +5,6 @@ export interface User {
   name: string;
   email: string;
   password?: string;
-  createdAt?: string;
-  updatedAt?: string;
 }
 
 export const getUsers = async (): Promise<User[]> => {
@@ -14,7 +12,16 @@ export const getUsers = async (): Promise<User[]> => {
   return response.data;
 };
 
-export const createUser = async (data: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> => {
+export const createUser = async (data: Omit<User, 'id'>): Promise<User> => {
   const response = await api.post<User>('/users', data);
   return response.data;
+};
+
+export const updateUser = async (id: number, data: { name: string; email: string }): Promise<User> => {
+  const response = await api.put<User>(`/users/${id}`, data);
+  return response.data;
+};
+
+export const deleteUser = async (id: number): Promise<void> => {
+  await api.delete(`/users/${id}`);
 };

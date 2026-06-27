@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-interface UserFormProps {
-  onSubmit: (data: { name: string; email: string; password: string }) => Promise<void>;
+interface UserFormProps<T> {
+  onSubmit: (data: { name: string; email: string; password: string }) => Promise<T>;
 }
 
-export default function UserForm({ onSubmit }: UserFormProps) {
+export default function UserForm<T>({ onSubmit }: UserFormProps<T>) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
