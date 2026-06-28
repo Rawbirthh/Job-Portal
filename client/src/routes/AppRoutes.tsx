@@ -5,6 +5,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import DashboardLayout from '../pages/Dashboard/DashboardLayout';
+import Users from '../pages/Dashboard/Users';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -30,6 +31,17 @@ export default function AppRoutes() {
         }
       >
         <Route index element={<Dashboard />} />
+      </Route>
+
+      <Route
+        path="/users"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Users />} />
       </Route>
 
 

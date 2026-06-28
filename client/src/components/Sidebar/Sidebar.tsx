@@ -7,6 +7,7 @@ export default function Sidebar() {
 
   const links = [
     { to: '/dashboard', label: 'Dashboard' },
+    { to: '/users', label: 'Users' },
   ];
 
   return (
@@ -26,7 +27,7 @@ export default function Sidebar() {
             key={link.to}
             to={link.to}
             className={`block px-3 py-2 rounded-lg text-sm transition ${
-              location.pathname === link.to
+              location.pathname === link.to || (link.to !== '/dashboard' && location.pathname.startsWith(link.to))
                 ? 'bg-zinc-800 text-white'
                 : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
             }`}

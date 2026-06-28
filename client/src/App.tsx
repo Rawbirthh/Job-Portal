@@ -4,7 +4,8 @@ import AppRoutes from './routes/AppRoutes';
 
 function App() {
   const location = useLocation();
-  const isDashboard = location.pathname.startsWith('/dashboard');
+  const isDashboard = location.pathname.startsWith('/dashboard') ||
+                      location.pathname.startsWith('/users');
 
   return (
     <>
