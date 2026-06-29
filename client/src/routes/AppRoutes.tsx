@@ -15,37 +15,22 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 export default function AppRoutes() {
   return (
     <Routes>
-
       {/* Public routes */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Protected routes */}
+      {/* Protected dashboard layout */}
       <Route
-        path="/dashboard"
         element={
           <ProtectedRoute>
             <DashboardLayout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/users" element={<Users />} />
       </Route>
-
-      <Route
-        path="/users"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Users />} />
-      </Route>
-
-
-
     </Routes>
   );
 }
