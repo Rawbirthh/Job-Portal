@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -22,6 +22,18 @@ export default function RoleForm({ onSubmit, permissions, initialData, submitLab
   const [selectedPermissionIds, setSelectedPermissionIds] = useState<number[]>(initialData?.permissionIds ?? []);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name);
+      setDescription(initialData.description);
+      setSelectedPermissionIds(initialData.permissionIds);
+    } else {
+      setName('');
+      setDescription('');
+      setSelectedPermissionIds([]);
+    }
+  }, [initialData]);
 
   const togglePermission = (id: number) => {
     setSelectedPermissionIds((prev) =>

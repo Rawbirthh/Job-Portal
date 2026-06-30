@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthStore } from '../../features/auth/authStore';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { Input } from '../../components/ui/input'; // Import shadcn Input
+import { Input } from '../../components/ui/input';
 
 export default function DashboardLayout() {
-  const { user } = useAuth();
+  const { user } = useAuthStore();
 
   return (
     // Ensure the root container is fully dark

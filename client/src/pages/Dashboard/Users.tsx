@@ -9,13 +9,16 @@ import { formatDate } from '../../utils/formatDate';
 export default function Users() {
   const { users, loading, addUser, updateUser, deleteUser } = useUsers();
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [editData, setEditData] = useState<{ name: string; email: string } | null>(null);
 
   const handleEdit = (user: User) => {
     setEditingId(user.id);
+    setEditData({ name: user.name, email: user.email });
   };
 
   const handleCancelEdit = () => {
     setEditingId(null);
+    setEditData(null);
   };
 
   const columns: DataTableColumn<User>[] = [
@@ -45,11 +48,14 @@ export default function Users() {
             if (editingId) {
               return updateUser({ id: editingId, data }).then((result) => {
                 setEditingId(null);
+                setEditData(null);
                 return result;
               });
             }
             return addUser(data);
           }}
+          initialData={editData ?? undefined}
+          submitLabel={editingId ? 'Save Changes' : 'Create Account'}
         />
         {editingId && (
           <button

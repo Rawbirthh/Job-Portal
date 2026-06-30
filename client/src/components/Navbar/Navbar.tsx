@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthStore } from '../../features/auth/authStore';
 
 export default function Navbar() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuthStore();
 
   return (
 

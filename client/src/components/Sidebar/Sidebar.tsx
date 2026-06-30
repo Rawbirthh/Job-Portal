@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthStore } from '../../features/auth/authStore';
 
 export default function Sidebar() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuthStore();
   const location = useLocation();
 
   const links = [

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
@@ -18,6 +18,16 @@ export default function PermissionForm({ onSubmit, initialData, submitLabel = 'C
   const [description, setDescription] = useState(initialData?.description ?? '');
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string[]>>({});
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name);
+      setDescription(initialData.description);
+    } else {
+      setName('');
+      setDescription('');
+    }
+  }, [initialData]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
